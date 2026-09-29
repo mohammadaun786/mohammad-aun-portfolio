@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammad Aun Saeed Akhtar | Data Science, Cloud & DevOps Portfolio</title>
+  <meta name="description" content="Portfolio of Mohammad Aun Saeed Akhtar — Final-Year Computer Engineering Student specializing in Data Science, Machine Learning, Explainable AI (XAI), Cloud Computing, and DevOps." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            dark: {
+              950: '#050811',
+              900: '#090D1A',
+              800: '#111827',
+            }
+          },
+          animation: {
+            'blob': 'blob 10s infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #050811;
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050811;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #06b6d4, #6366f1);
+      border-radius: 9999px;
+    }
+
+    /* Subtle Tech Grid Background */
+    .bg-grid {
+      background-size: 42px 42px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    /* Apple-Style Glassmorphism Card */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+      box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15), 0 0 25px -5px rgba(99, 102, 241, 0.12);
+      transform: translateY(-4px);
+    }
+
+    /* Scroll Reveal Utility */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gradient Text */
+    .text-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Cursor Glow Effect */
+    #cursor-glow {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(99, 102, 241, 0.04) 40%, transparent 70%);
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      transition: width 0.2s, height 0.2s;
+    }
+  </style>
+</head>
+<body class="bg-grid relative selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Interactive Mouse Spotlight -->
+  <div id="cursor-glow" class="hidden md:block"></div>
+
+  <!-- Ambient Neon Aurora Blobs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/15 rounded-full blur-[120px] animate-blob"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-indigo-600/15 rounded-full blur-[120px] animate-blob" style="animation-delay: 2s;"></div>
+    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-purple-600/15 rounded-full blur-[120px] animate-blob" style="animation-delay: 4s;"></div>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="fixed top-4 inset-x-0 z-50 px-4 sm:px-6 lg:px-8">
+    <nav class="max-w-6xl mx-auto glass-card rounded-2xl px-5 py-3.5 flex items-center justify-between shadow-2xl">
+      <a href="#home" class="flex items-center gap-2.5 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 via-indigo-500 to-purple-600 flex items-center justify-center font-display font-bold text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition">
+          MA
+        </div>
+        <span class="font-display font-bold text-lg tracking-tight text-white">
+          Mohammad <span class="text-cyan-400">Aun</span>
+        </span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#about" class="hover:text-cyan-400 transition">About</a>
+        <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
+        <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
+        <a href="#experience" class="hover:text-cyan-400 transition">Experience</a>
+        <a href="#education" class="hover:text-cyan-400 transition">Education</a>
+        <a href="#certifications" class="hover:text-cyan-400 transition">Certificates</a>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://drive.google.com/file/d/1X87SUkmmVsjwQ8ZIVPvhk2eIUliYgz08/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+           class="px-4 py-2 rounded-xl text-xs font-semibold border border-white/15 hover:border-cyan-400/50 text-slate-200 hover:text-cyan-300 transition flex items-center gap-1.5">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Resume
+        </a>
+        <a href="#contact"
+           class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white shadow-lg shadow-cyan-500/20 transition flex items-center gap-1.5">
+          Let's Connect <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Trigger -->
+      <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-1.5">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass-card rounded-2xl p-5 flex flex-col gap-4 text-sm font-medium text-slate-200">
+      <a href="#about" class="mobile-link hover:text-cyan-400">About</a>
+      <a href="#skills" class="mobile-link hover:text-cyan-400">Skills</a>
+      <a href="#projects" class="mobile-link hover:text-cyan-400">Projects</a>
+      <a href="#experience" class="mobile-link hover:text-cyan-400">Experience</a>
+      <a href="#education" class="mobile-link hover:text-cyan-400">Education</a>
+      <a href="#certifications" class="mobile-link hover:text-cyan-400">Certificates</a>
+      <div class="pt-2 border-t border-white/10 flex gap-3">
+        <a href="https://drive.google.com/file/d/1X87SUkmmVsjwQ8ZIVPvhk2eIUliYgz08/view?usp=drive_link" target="_blank" class="flex-1 text-center py-2.5 rounded-xl border border-white/15 text-xs font-semibold">View Resume</a>
+        <a href="#contact" class="mobile-link flex-1 text-center py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-white text-xs font-semibold">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section id="home" class="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Left Column: Intro -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400 -ml-3"></span>
+          Open to Internships, Full-Time Roles & Collaborative Projects
+        </div>
+
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.12] text-white">
+          Hi, I'm <span class="text-gradient">Mohammad Aun Saeed Akhtar</span>
+        </h1>
+
+        <!-- Dynamic Typewriter Tagline -->
+        <div class="h-12 sm:h-8 flex items-center justify-center lg:justify-start font-mono text-sm sm:text-base text-cyan-300">
+          <span class="text-slate-400 mr-2">&gt;</span>
+          <span id="typewriter" class="font-semibold"></span>
+          <span class="w-2 h-5 bg-cyan-400 ml-1 animate-pulse"></span>
+        </div>
+
+        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+          Final-year <strong class="text-white font-semibold">Computer Engineering student</strong> passionate about the intersection of <strong class="text-cyan-300 font-medium">Data Science, Cloud Computing, and DevOps</strong>. Experienced in Python, SQL, Deep Learning, and Explainable AI (XAI), with a strong focus on deploying scalable, real-world systems.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+          <a href="#projects"
+             class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-95 text-white font-semibold text-sm shadow-xl shadow-cyan-500/20 flex items-center gap-2 transition transform hover:-translate-y-0.5">
+            Explore My Projects <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </a>
+          <a href="https://drive.google.com/file/d/1X87SUkmmVsjwQ8ZIVPvhk2eIUliYgz08/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="px-6 py-3.5 rounded-xl glass-card text-white font-semibold text-sm hover:border-cyan-400/50 flex items-center gap-2 transition">
+            <i data-lucide="download" class="w-4 h-4 text-cyan-400"></i> Download / View CV
+          </a>
+        </div>
+
+        <!-- Social Bar -->
+        <div class="pt-4 flex items-center justify-center lg:justify-start gap-4">
+          <span class="text-xs font-mono uppercase tracking-wider text-slate-400">Connect:</span>
+          <a href="https://www.linkedin.com/in/mohammad-aun-saeed-akhtar-6ab3b12b6/" target="_blank" rel="noopener noreferrer"
+             class="p-2.5 rounded-xl glass-card text-slate-300 hover:text-cyan-400" title="LinkedIn">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="https://github.com/mohammadaun786" target="_blank" rel="noopener noreferrer"
+             class="p-2.5 rounded-xl glass-card text-slate-300 hover:text-white" title="GitHub">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+          <a href="https://www.instagram.com/md._aun_7?stkn=MXhoN2V1aXlzMDlhNQ==" target="_blank" rel="noopener noreferrer"
+             class="p-2.5 rounded-xl glass-card text-slate-300 hover:text-pink-400" title="Instagram">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a href="mailto:md.aun92@gmail.com"
+             class="p-2.5 rounded-xl glass-card text-slate-300 hover:text-emerald-400" title="Email">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: 3D Profile Card -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative group w-72 sm:w-80">
+          <!-- Glowing Back Ring -->
+          <div class="absolute -inset-1.5 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition duration-500"></div>
+
+          <!-- Profile Container -->
+          <div class="relative glass-card rounded-3xl p-4 border border-white/15">
+            <div class="relative aspect-[4/5] rounded-2xl overflow-hidden bg-slate-900">
+              <img 
+                src="https://drive.google.com/thumbnail?id=1gHXPwb60xI6_WKCZxnTd8WHaPHLZd1lT&sz=w1000" 
+                onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1gHXPwb60xI6_WKCZxnTd8WHaPHLZd1lT=w1000'; this.onerror=function(){this.src='https://ui-avatars.com/api/?name=Mohammad+Aun&size=600&background=0D1528&color=38bdf8&bold=true'};"
+                alt="Mohammad Aun Saeed Akhtar" 
+                class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent opacity-80"></div>
+              <div class="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-dark-950/80 backdrop-blur-md border border-white/10">
+                <p class="font-display font-bold text-white text-sm">Mohammad Aun Saeed Akhtar</p>
+                <p class="text-xs text-cyan-300 font-mono">B.E. Computer Engineering • SPPU</p>
+              </div>
+            </div>
+
+            <!-- Floating Tech Pills -->
+            <div class="absolute -top-4 -left-4 px-3 py-1.5 rounded-xl glass-card border border-cyan-400/30 text-xs font-mono text-cyan-300 flex items-center gap-1.5 animate-float shadow-lg">
+              <i data-lucide="brain-circuit" class="w-4 h-4 text-cyan-400"></i> Data Science & XAI
+            </div>
+            <div class="absolute -bottom-4 -right-4 px-3 py-1.5 rounded-xl glass-card border border-indigo-400/30 text-xs font-mono text-indigo-300 flex items-center gap-1.5 animate-float shadow-lg" style="animation-delay: 2s;">
+              <i data-lucide="cloud-cog" class="w-4 h-4 text-indigo-400"></i> Cloud & DevOps
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BENTO GRID ABOUT SECTION ================= -->
+  <section id="about" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/25 text-indigo-300 text-xs font-mono uppercase tracking-widest">About Me</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">
+        Bridging <span class="text-gradient">Data Intelligence</span> & Cloud Scalability
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-2">
+        A structured overview of my academic foundation, technical toolkit, creative perspective, and engineering mission.
+      </p>
+    </div>
+
+    <!-- Modern Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+
+      <!-- Card 1: Academic Foundation -->
+      <div class="md:col-span-7 glass-card rounded-3xl p-7 flex flex-col justify-between">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 text-cyan-400">
+            <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-cyan-400 uppercase">01 / Foundation</span>
+            <h3 class="font-display text-xl font-bold text-white">Academic Foundation</h3>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Final-year <strong class="text-white">Computer Engineering student</strong> at MMANTC (Savitribai Phule Pune University), backed by a <strong class="text-cyan-300">First Class with Distinction (76.57%)</strong> in Diploma Engineering. Focused on building practical, production-ready solutions across Data Science, Cloud Computing, and DevOps.
+        </p>
+      </div>
+
+      <!-- Card 2: Data & ML Toolkit -->
+      <div class="md:col-span-5 glass-card rounded-3xl p-7 flex flex-col justify-between">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 rounded-2xl bg-indigo-500/10 border border-indigo-400/20 text-indigo-400">
+            <i data-lucide="database-zap" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-indigo-400 uppercase">02 / Intelligence</span>
+            <h3 class="font-display text-xl font-bold text-white">Data & ML Toolkit</h3>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+          Hands-on experience with <strong class="text-white">Python, SQL, Deep Learning, and Explainable AI (SHAP/LIME)</strong> to clean complex datasets, overcome severe class imbalances, and extract transparent, actionable insights.
+        </p>
+      </div>
+
+      <!-- Card 3: Cloud & Deployment -->
+      <div class="md:col-span-4 glass-card rounded-3xl p-7">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 rounded-2xl bg-purple-500/10 border border-purple-400/20 text-purple-400">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-purple-400 uppercase">03 / Infrastructure</span>
+            <h3 class="font-display text-lg font-bold text-white">Cloud & Deployment</h3>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Expanding expertise in <strong class="text-white">AWS cloud infrastructure, Docker containerization, and CI/CD workflows</strong> to build and maintain reliable, scalable systems.
+        </p>
+      </div>
+
+      <!-- Card 4: Creative Edge -->
+      <div class="md:col-span-4 glass-card rounded-3xl p-7">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 rounded-2xl bg-pink-500/10 border border-pink-400/20 text-pink-400">
+            <i data-lucide="clapperboard" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-pink-400 uppercase">04 / Aesthetics</span>
+            <h3 class="font-display text-lg font-bold text-white">Creative Edge</h3>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Experienced in <strong class="text-white">video editing and visual storytelling</strong>, bringing sharp attention to detail, strong UI sensibility, and engaging presentation to technical projects.
+        </p>
+      </div>
+
+      <!-- Card 5: Career Goal -->
+      <div class="md:col-span-4 glass-card rounded-3xl p-7 bg-gradient-to-br from-cyan-500/10 via-indigo-500/10 to-transparent">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-3 rounded-2xl bg-emerald-500/10 border border-emerald-400/20 text-emerald-400">
+            <i data-lucide="rocket" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <span class="text-xs font-mono text-emerald-400 uppercase">05 / Mission</span>
+            <h3 class="font-display text-lg font-bold text-white">Career Goal</h3>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          Actively seeking <strong class="text-white">internships and engineering collaborations</strong> to solve real-world problems, learn from industry leaders, and contribute to high-impact teams.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= TECHNICAL SKILLS SECTION ================= -->
+  <section id="skills" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono uppercase tracking-widest">Technical Arsenal</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">
+        Skills & <span class="text-gradient">Core Competencies</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-2">
+        Combining detailed domain capabilities with modern tools across Data Science, Cloud, and Software Engineering.
+      </p>
+    </div>
+
+    <!-- Detailed Point-Wise Skill Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+
+      <!-- Category 1: Programming & Databases -->
+      <div class="glass-card rounded-3xl p-7">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-400/20">
+              <i data-lucide="code-2" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">Programming & Databases</h3>
+          </div>
+          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-lg">Core</span>
+        </div>
+        <ul class="space-y-3 text-sm text-slate-300 mb-5">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Python:</strong> Core programming, OOPs, scripting, automation, and data pipeline engineering.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">SQL (MySQL):</strong> Relational database design, complex joins, querying, and backend data manipulation.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Java & Web Basics:</strong> Object-oriented application logic, Flask REST APIs, and Android SDK fundamentals.</span>
+          </li>
+        </ul>
+        <div class="flex flex-wrap gap-2 pt-3 border-t border-white/10">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-cyan-300 border border-white/10">Python</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-cyan-300 border border-white/10">SQL / MySQL</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-cyan-300 border border-white/10">Flask</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-cyan-300 border border-white/10">Java</span>
+        </div>
+      </div>
+
+      <!-- Category 2: Data Science, ML & XAI -->
+      <div class="glass-card rounded-3xl p-7">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-400/20">
+              <i data-lucide="cpu" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">Data Science & Machine Learning</h3>
+          </div>
+          <span class="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-lg">AI & XAI</span>
+        </div>
+        <ul class="space-y-3 text-sm text-slate-300 mb-5">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Machine & Deep Learning:</strong> Supervised/unsupervised models, TensorFlow, Keras, Scikit-Learn, and predictive analytics.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Explainable AI (XAI) & GenAI:</strong> Transparent model interpretation using SHAP & LIME, plus RAG pipelines & LLMs.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Data Analysis & CV:</strong> Data cleaning, SMOTE, Exploratory Data Analysis (EDA), OpenCV, and MediaPipe.</span>
+          </li>
+        </ul>
+        <div class="flex flex-wrap gap-2 pt-3 border-t border-white/10">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-indigo-300 border border-white/10">Machine Learning</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-indigo-300 border border-white/10">Deep Learning</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-indigo-300 border border-white/10">SHAP / LIME (XAI)</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-indigo-300 border border-white/10">Pandas & NumPy</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-indigo-300 border border-white/10">OpenCV</span>
+        </div>
+      </div>
+
+      <!-- Category 3: Cloud & DevOps -->
+      <div class="glass-card rounded-3xl p-7">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-400/20">
+              <i data-lucide="cloud" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">Cloud & DevOps</h3>
+          </div>
+          <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2.5 py-1 rounded-lg">Scalability</span>
+        </div>
+        <ul class="space-y-3 text-sm text-slate-300 mb-5">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Amazon Web Services (AWS):</strong> Cloud compute (EC2), storage (S3), IAM security, hosting, and scalable deployment practices.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Containers & CI/CD:</strong> Docker containerization workflows and automated software delivery pipelines.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-purple-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Git & GitHub:</strong> Version control, branch management, and collaborative development workflows.</span>
+          </li>
+        </ul>
+        <div class="flex flex-wrap gap-2 pt-3 border-t border-white/10">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-purple-300 border border-white/10">AWS (EC2, S3, IAM)</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-purple-300 border border-white/10">Docker</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-purple-300 border border-white/10">CI/CD Pipelines</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-purple-300 border border-white/10">Git & GitHub</span>
+        </div>
+      </div>
+
+      <!-- Category 4: Creative & Professional Edge -->
+      <div class="glass-card rounded-3xl p-7">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="p-3 rounded-2xl bg-pink-500/10 text-pink-400 border border-pink-400/20">
+              <i data-lucide="film" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">Creative & Media Tools</h3>
+          </div>
+          <span class="text-xs font-mono text-pink-400 bg-pink-500/10 px-2.5 py-1 rounded-lg">Bonus Edge</span>
+        </div>
+        <ul class="space-y-3 text-sm text-slate-300 mb-5">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-pink-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Video Editing & Post-Production:</strong> Crafting engaging visual narratives, smooth transitions, and high-retention tech demos.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-pink-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Visual Storytelling:</strong> Translating complex engineering architectures into clear, compelling visual presentations.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-pink-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Leadership & Outreach:</strong> Campus representation, technical community engagement, and event coordination.</span>
+          </li>
+        </ul>
+        <div class="flex flex-wrap gap-2 pt-3 border-t border-white/10">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-pink-300 border border-white/10">Video Editing</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-pink-300 border border-white/10">Visual Storytelling</span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-pink-300 border border-white/10">Problem Solving</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FEATURED PROJECTS SECTION ================= -->
+  <section id="projects" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-400/25 text-purple-300 text-xs font-mono uppercase tracking-widest">Portfolio Showcase</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">
+          Featured <span class="text-gradient">Engineering Projects</span>
+        </h2>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap gap-2">
+        <button onclick="filterProjects('all')" class="proj-filter active-filter px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-cyan-500 text-slate-950 transition" data-filter="all">All Projects (4)</button>
+        <button onclick="filterProjects('ai')" class="proj-filter px-4 py-2 rounded-xl text-xs font-mono font-semibold glass-card text-slate-300 hover:text-white transition" data-filter="ai">AI / ML & Data</button>
+        <button onclick="filterProjects('cloud')" class="proj-filter px-4 py-2 rounded-xl text-xs font-mono font-semibold glass-card text-slate-300 hover:text-white transition" data-filter="cloud">Cloud & DevOps</button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+
+      <!-- Project 1: Zero-Day Fraud Detection -->
+      <div class="project-card glass-card rounded-3xl p-7 flex flex-col justify-between relative overflow-hidden group" data-category="ai">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/15 text-cyan-300 border border-cyan-400/30">
+              Final Year B.E. Capstone
+            </span>
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-amber-500/15 text-amber-300 border border-amber-400/30 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span> Active Research
+            </span>
+          </div>
+
+          <h3 class="font-display text-2xl font-bold text-white group-hover:text-cyan-300 transition">
+            Zero-Day Online Payment Fraud Detection using Deep Learning & Explainable AI (XAI)
+          </h3>
+
+          <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+            An advanced fraud detection system designed to identify unseen (zero-day) anomalies in online payment transactions using Deep Learning, integrated with Explainable AI (XAI) to make model predictions transparent and interpretable.
+          </p>
+
+          <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+              <span>Detects real-time fraudulent patterns and unseen attack vectors while resolving severe class imbalance using SMOTE.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i>
+              <span>Uses XAI techniques (<strong class="text-white">SHAP & LIME</strong>) to explain why a transaction was flagged, improving financial trust and decision-making.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Deep Learning</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Explainable AI (SHAP/LIME)</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Scikit-Learn</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Pandas</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">SQL</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/mohammadaun786/zero-day-fraud-detection-1" target="_blank" rel="noopener noreferrer"
+               class="flex-1 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-cyan-500 hover:text-slate-950 text-white text-xs font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="github" class="w-4 h-4"></i> View GitHub Repo
+            </a>
+            <a href="https://github.com/mohammadaun786/zero-day-fraud-detection-1#readme" target="_blank" rel="noopener noreferrer"
+               class="py-2.5 px-4 rounded-xl border border-white/15 hover:border-cyan-400/50 text-slate-300 hover:text-cyan-300 text-xs font-semibold transition flex items-center gap-1.5">
+              Architecture <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: AI Virtual Mouse Using Python -->
+      <div class="project-card glass-card rounded-3xl p-7 flex flex-col justify-between relative overflow-hidden group" data-category="ai">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/15 text-indigo-300 border border-indigo-400/30">
+              Diploma Final Year Project
+            </span>
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+              Completed
+            </span>
+          </div>
+
+          <h3 class="font-display text-2xl font-bold text-white group-hover:text-indigo-300 transition">
+            AI Virtual Mouse Using Python & Computer Vision
+          </h3>
+
+          <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+            A touchless human-computer interaction (HCI) system that enables users to control mouse movement, clicks, and scrolling in real time using hand gestures captured via a standard webcam.
+          </p>
+
+          <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+              <span>Tracks 21 hand landmarks and fingertip coordinates in real time for smooth cursor navigation and click actions.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+              <span>Eliminates hardware dependency through optimized OpenCV & MediaPipe frame processing with minimal latency.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">OpenCV</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">MediaPipe</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Computer Vision</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">NumPy</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/mohammadaun786/virtual-mouse-using-python" target="_blank" rel="noopener noreferrer"
+               class="flex-1 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-indigo-500 hover:text-white text-white text-xs font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="github" class="w-4 h-4"></i> View GitHub Repo
+            </a>
+            <a href="https://github.com/mohammadaun786/virtual-mouse-using-python#readme" target="_blank" rel="noopener noreferrer"
+               class="py-2.5 px-4 rounded-xl border border-white/15 hover:border-indigo-400/50 text-slate-300 hover:text-indigo-300 text-xs font-semibold transition flex items-center gap-1.5">
+              Preview <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: End-to-End Data Analytics & Predictive Modeling Pipeline -->
+      <div class="project-card glass-card rounded-3xl p-7 flex flex-col justify-between relative overflow-hidden group" data-category="ai">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-400/30">
+              Data Science & SQL Pipeline
+            </span>
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-white/10 text-slate-300">
+              Analytics & ML
+            </span>
+          </div>
+
+          <h3 class="font-display text-2xl font-bold text-white group-hover:text-emerald-300 transition">
+            End-to-End Data Analytics & Predictive Modeling Pipeline
+          </h3>
+
+          <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+            A comprehensive data analysis and machine learning pipeline that processes raw business data using SQL and Python to uncover key trends and predict future outcomes with high accuracy.
+          </p>
+
+          <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+              <span>Performed data cleaning, complex SQL querying, and Exploratory Data Analysis (EDA) to extract actionable insights.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+              <span>Built and evaluated supervised ML models with visual reports for data-driven decision-making.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">SQL</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Machine Learning</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Pandas</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Data Visualization</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/mohammadaun786" target="_blank" rel="noopener noreferrer"
+               class="flex-1 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-emerald-500 hover:text-slate-950 text-white text-xs font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="github" class="w-4 h-4"></i> Explore on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Cloud-Hosted Web Application & Scalable Deployment on AWS -->
+      <div class="project-card glass-card rounded-3xl p-7 flex flex-col justify-between relative overflow-hidden group" data-category="cloud">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-purple-500/15 text-purple-300 border border-purple-400/30">
+              Cloud & DevOps Architecture
+            </span>
+            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-purple-500/15 text-purple-300">
+              AWS Infrastructure
+            </span>
+          </div>
+
+          <h3 class="font-display text-2xl font-bold text-white group-hover:text-purple-300 transition">
+            Cloud-Hosted Web Application & Scalable Deployment on AWS
+          </h3>
+
+          <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+            A practical cloud infrastructure project demonstrating the deployment, containerization, hosting, and management of a scalable web application on Amazon Web Services (AWS) using modern DevOps workflows.
+          </p>
+
+          <ul class="mt-4 space-y-2 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i>
+              <span>Configured cloud compute (EC2) and storage (S3) resources on AWS with secure IAM access and traffic management.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="sparkles" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i>
+              <span>Streamlined code updates and deployment workflows using Docker, Git, and GitHub for reliable availability.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-5">
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">AWS (EC2, S3, IAM)</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Docker</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Git & GitHub</span>
+            <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-white/5 text-slate-300">Linux</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="https://github.com/mohammadaun786" target="_blank" rel="noopener noreferrer"
+               class="flex-1 py-2.5 px-4 rounded-xl bg-white/10 hover:bg-purple-500 hover:text-white text-white text-xs font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="github" class="w-4 h-4"></i> Explore on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE & LEADERSHIP SECTION ================= -->
+  <section id="experience" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono uppercase tracking-widest">Career Journey</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">
+        Internships & <span class="text-gradient">Leadership Roles</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-2">
+        Hands-on industry training, cloud internships, and campus-level technical leadership.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Role 1: Cloud Computing & DevOps Intern -->
+      <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border-t-2 border-t-cyan-400">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-cyan-400 mb-3">
+            <span>INTERNSHIP</span>
+            <span>Jan – Feb (6 Weeks)</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">Cloud Computing & DevOps Intern</h3>
+          <p class="text-sm text-slate-400 font-medium mt-1">Maincrafts Technology • Cloud Infrastructure & DevOps</p>
+
+          <ul class="mt-4 space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+              <span>Gained hands-on exposure to cloud infrastructure provisioning, management, and scalable deployment workflows.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+              <span>Worked with Docker-based containerization, CI/CD pipelines, and core DevOps methodologies to streamline software delivery.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-cyan-500/10 text-cyan-300">Cloud Infrastructure</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-cyan-500/10 text-cyan-300">Docker</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-cyan-500/10 text-cyan-300">CI/CD</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-cyan-500/10 text-cyan-300">Git</span>
+          </div>
+          <a href="https://drive.google.com/file/d/1u7UQEAjsREXTDbKvN09I61AY1NR_eydy/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-300 hover:text-cyan-200">
+            <i data-lucide="award" class="w-4 h-4"></i> View Internship Certificate <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Role 2: Techfest IIT Bombay College Ambassador -->
+      <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border-t-2 border-t-indigo-400">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-indigo-400 mb-3">
+            <span>LEADERSHIP</span>
+            <span>2025 – 2026</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">College Ambassador</h3>
+          <p class="text-sm text-slate-400 font-medium mt-1">Techfest, IIT Bombay • Asia's Largest Sci-Tech Festival</p>
+
+          <ul class="mt-4 space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+              <span>Selected to represent Techfest IIT Bombay at the campus level across the 2025–2026 tenure.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+              <span>Led student outreach, national competition promotions, workshops, and technical community engagement.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-indigo-500/10 text-indigo-300">Leadership</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-indigo-500/10 text-indigo-300">Community Outreach</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-indigo-500/10 text-indigo-300">Event Coordination</span>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-300">
+            <i data-lucide="shield-check" class="w-4 h-4"></i> Verified Campus Representative
+          </span>
+        </div>
+      </div>
+
+      <!-- Role 3: Android App Development Intern -->
+      <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border-t-2 border-t-purple-400">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-purple-400 mb-3">
+            <span>INDUSTRIAL TRAINING</span>
+            <span>2023 (6 Weeks)</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">Android App Development Intern</h3>
+          <p class="text-sm text-slate-400 font-medium mt-1">WebNazar (Neuron Developing Mind) • Intensive Training</p>
+
+          <ul class="mt-4 space-y-2.5 text-sm text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-purple-400 shrink-0 mt-1"></i>
+              <span>Designed and built functional mobile applications during a 6-week industrial training program using Java and the Android SDK.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-purple-400 shrink-0 mt-1"></i>
+              <span>Practiced collaborative version control using Git and executed end-to-end application testing and deployment workflows.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10">
+          <div class="flex flex-wrap gap-1.5 mb-4">
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-purple-500/10 text-purple-300">Java</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-purple-500/10 text-purple-300">Android SDK</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-purple-500/10 text-purple-300">Mobile Dev</span>
+            <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-purple-500/10 text-purple-300">Git</span>
+          </div>
+          <a href="https://drive.google.com/file/d/1aIVFYXLGs-TTrNdwRxsANTibrXvFqjh2/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-300 hover:text-purple-200">
+            <i data-lucide="award" class="w-4 h-4"></i> View Training Certificate <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION SECTION ================= -->
+  <section id="education" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-400/25 text-indigo-300 text-xs font-mono uppercase tracking-widest">Academic Journey</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">
+        Education & <span class="text-gradient">Qualifications</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+
+      <!-- B.E. Card -->
+      <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/15 text-cyan-300 border border-cyan-400/30">
+            June 2024 – Present
+          </span>
+          <span class="text-xs font-mono text-emerald-400 font-semibold">Final Year (Pursuing)</span>
+        </div>
+
+        <h3 class="font-display text-2xl font-bold text-white">
+          Bachelor of Engineering (B.E.) in Computer Engineering
+        </h3>
+        <p class="text-sm text-cyan-300 font-medium mt-1">
+          Maulana Mukhtar Ahmed Nadvi Technical Campus (MMANTC)
+        </p>
+        <p class="text-xs text-slate-400 font-mono mt-0.5">
+          Savitribai Phule Pune University (SPPU)
+        </p>
+
+        <ul class="mt-5 space-y-2.5 text-sm text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+            <span>Focusing on core computer engineering alongside specialized tracks in <strong class="text-white">Data Science, Machine Learning, Cloud Computing, and DevOps</strong>.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Final Year Capstone:</strong> Zero-Day Online Payment Fraud Detection Using Deep Learning & Explainable AI (XAI).</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Diploma Card -->
+      <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-indigo-500/15 text-indigo-300 border border-indigo-400/30">
+            July 2022 – June 2024
+          </span>
+          <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 font-semibold">
+            76.57% • Distinction
+          </span>
+        </div>
+
+        <h3 class="font-display text-2xl font-bold text-white">
+          Diploma in Computer Engineering
+        </h3>
+        <p class="text-sm text-indigo-300 font-medium mt-1">
+          Maulana Mukhtar Ahmed Nadvi Technical Campus (MMANTC)
+        </p>
+        <p class="text-xs text-slate-400 font-mono mt-0.5">
+          Maharashtra State Board of Technical Education (MSBTE)
+        </p>
+
+        <ul class="mt-5 space-y-2.5 text-sm text-slate-300">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+            <span>Graduated with <strong class="text-white">First Class with Distinction (76.57%)</strong>, building strong fundamentals in programming, SQL databases, and computer networks.</span>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="w-4 h-4 text-indigo-400 shrink-0 mt-1"></i>
+            <span><strong class="text-white">Diploma Capstone:</strong> AI Virtual Mouse Using Python — a real-time gesture-controlled HCI system using OpenCV & MediaPipe.</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICATIONS & ACHIEVEMENTS ================= -->
+  <section id="certifications" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/25 text-emerald-300 text-xs font-mono uppercase tracking-widest">Credentials & Honors</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mt-3 text-white">
+        Certifications & <span class="text-gradient">Key Achievements</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base mt-2">
+        Verified technical certifications, international university masterclasses, and competitive milestones.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Cert 1: Job Ready Data Science -->
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-400/20">
+              <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+            </span>
+            <span class="text-xs font-mono text-cyan-300 bg-cyan-500/10 px-2.5 py-1 rounded-md">CodeWithHarry</span>
+          </div>
+          <h3 class="font-display text-lg font-bold text-white">The Ultimate Job Ready Data Science Course</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Comprehensive training in Data Analysis, Machine Learning models, Exploratory Data Analysis (EDA), and real-world Python data pipelines.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">Data Science & ML</span>
+          <a href="https://drive.google.com/file/d/1aWSR669_3vpCJdZZTY_M6SHDNSS72y45/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+            Verify <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cert 2: Complete 2026 Python Bootcamp -->
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-400/20">
+              <i data-lucide="terminal" class="w-5 h-5"></i>
+            </span>
+            <span class="text-xs font-mono text-indigo-300 bg-indigo-500/10 px-2.5 py-1 rounded-md">CodeWithHarry • 2026</span>
+          </div>
+          <h3 class="font-display text-lg font-bold text-white">Complete 2026 Python Bootcamp: Learn Python from Scratch</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Mastered core Python programming, Object-Oriented Programming (OOP), scripting, automation, and algorithmic problem solving.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">Core Python & OOP</span>
+          <a href="https://drive.google.com/file/d/1UsW5O3Vh-FU14rN2AwAWouiZ_ehPBmsu/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+            Verify <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cert 3: Deakin University Masterclass -->
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-400/20">
+              <i data-lucide="shield-alert" class="w-5 h-5"></i>
+            </span>
+            <span class="text-xs font-mono text-purple-300 bg-purple-500/10 px-2.5 py-1 rounded-md">Deakin University</span>
+          </div>
+          <h3 class="font-display text-lg font-bold text-white">Data Science, AI & Cyber Security Masterclass</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Delivered by Prof. Gang Li (Deakin University, Australia) in partnership with iSTEPMentors. Passed the assessment test with Distinction.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-emerald-400">Passed w/ Distinction</span>
+          <a href="https://drive.google.com/file/d/15NH_tCuanyyYywMIgqvU7_4ZIxRK7_3f/view?usp=drive_link" target="_blank" rel="noopener noreferrer"
+             class="text-xs font-semibold text-purple-400 hover:text-purple-300 flex items-center gap-1">
+            Verify <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cert 4: Learn SQL using MySQL -->
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-400/20">
+              <i data-lucide="database" class="w-5 h-5"></i>
+            </span>
+            <span class="text-xs font-mono text-emerald-300 bg-emerald-500/10 px-2.5 py-1 rounded-md">MMANTC • Jan 2026</span>
+          </div>
+          <h3 class="font-display text-lg font-bold text-white">Learn SQL using MySQL (Add-on Certification)</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Focused on relational database architecture, complex SQL queries, joins, indexing, and backend data manipulation.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">Relational Databases</span>
+          <span class="text-xs font-mono text-emerald-400">Completed</span>
+        </div>
+      </div>
+
+      <!-- Cert 5: Techfest IIT Bombay -->
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-400/20">
+              <i data-lucide="award" class="w-5 h-5"></i>
+            </span>
+            <span class="text-xs font-mono text-amber-300 bg-amber-500/10 px-2.5 py-1 rounded-md">IIT Bombay • 2025–26</span>
+          </div>
+          <h3 class="font-display text-lg font-bold text-white">College Ambassador Program Certificate</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Recognized for leadership, student community outreach, and promoting technical initiatives for Techfest, IIT Bombay.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">Leadership & Outreach</span>
+          <span class="text-xs font-mono text-amber-400">Honored</span>
+        </div>
+      </div>
+
+      <!-- Cert 6: National Competitions & Cloud Training -->
+      <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <span class="p-2.5 rounded-xl bg-pink-500/10 text-pink-400 border border-pink-400/20">
+              <i data-lucide="trophy" class="w-5 h-5"></i>
+            </span>
+            <span class="text-xs font-mono text-pink-300 bg-pink-500/10 px-2.5 py-1 rounded-md">Unstop • Kaggle • AWS</span>
+          </div>
+          <h3 class="font-display text-lg font-bold text-white">National Technical Challenges & AI Micro-Courses</h3>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            Active participant in national-level hackathons and quizzes on Unstop, alongside practical AI/ML & Cloud coursework on Kaggle and freeCodeCamp.
+          </p>
+        </div>
+        <div class="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">Competitive Tech</span>
+          <span class="text-xs font-mono text-pink-400">Active Participant</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section id="contact" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto reveal">
+    <div class="glass-card rounded-3xl p-8 sm:p-12 border border-cyan-500/20 relative overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+        <!-- Left Info -->
+        <div class="lg:col-span-6 space-y-6">
+          <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-mono uppercase tracking-widest">Get In Touch</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Let's Build Something <span class="text-gradient">Impactful Together</span>
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Whether you have an internship opportunity, a collaborative AI/Cloud project, or just want to talk tech — my inbox is always open.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <a href="mailto:md.aun92@gmail.com" class="flex items-center gap-4 group">
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:border-cyan-400/50 text-cyan-400 transition">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-slate-400">Email</p>
+                <p class="text-sm font-semibold text-white group-hover:text-cyan-300 transition">md.aun92@gmail.com</p>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4">
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-indigo-400">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <p class="text-xs font-mono text-slate-400">Location</p>
+                <p class="text-sm font-semibold text-white">Maharashtra, India (Open to Remote & Relocation)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Buttons -->
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="https://www.linkedin.com/in/mohammad-aun-saeed-akhtar-6ab3b12b6/" target="_blank" rel="noopener noreferrer"
+               class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/40 text-xs font-semibold text-white flex items-center gap-2 transition">
+              <i data-lucide="linkedin" class="w-4 h-4 text-cyan-400"></i> LinkedIn
+            </a>
+            <a href="https://github.com/mohammadaun786" target="_blank" rel="noopener noreferrer"
+               class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-xs font-semibold text-white flex items-center gap-2 transition">
+              <i data-lucide="github" class="w-4 h-4"></i> GitHub
+            </a>
+            <a href="https://www.instagram.com/md._aun_7?stkn=MXhoN2V1aXlzMDlhNQ==" target="_blank" rel="noopener noreferrer"
+               class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-pink-500/20 border border-white/10 hover:border-pink-400/40 text-xs font-semibold text-white flex items-center gap-2 transition">
+              <i data-lucide="instagram" class="w-4 h-4 text-pink-400"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Quick Message Form -->
+        <div class="lg:col-span-6">
+          <form onsubmit="sendEmail(event)" class="space-y-4 bg-dark-950/60 p-6 sm:p-7 rounded-2xl border border-white/10">
+            <h3 class="font-display text-lg font-bold text-white mb-2">Send a Direct Message</h3>
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1.5">Your Name</label>
+              <input type="text" id="senderName" required placeholder="John Doe"
+                     class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none text-sm text-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1.5">Subject</label>
+              <input type="text" id="senderSubject" required placeholder="Internship Opportunity / Project Collaboration"
+                     class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none text-sm text-white" />
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1.5">Message</label>
+              <textarea id="senderMessage" rows="4" required placeholder="Hi Mohammad Aun, I came across your portfolio..."
+                        class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none text-sm text-white"></textarea>
+            </div>
+            <button type="submit"
+                    class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-95 text-white font-semibold text-sm shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2 transition">
+              Send Message <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="relative z-10 py-8 px-4 border-t border-white/10 text-center text-xs text-slate-400 font-mono">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Mohammad Aun Saeed Akhtar. Crafted with precision & passion.</p>
+      <p class="text-slate-500">Data Science • Cloud Computing • DevOps • Explainable AI</p>
+    </div>
+  </footer>
+
+  <!-- ================= JAVASCRIPT ANIMATIONS & LOGIC ================= -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Interactive Cursor Glow
+    const cursorGlow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // Typewriter Effect (Includes all 3 Tagline Options seamlessly!)
+    const phrases = [
+      "Data Science, Cloud & DevOps Enthusiast",
+      "Bridging Data Science & Cloud DevOps",
+      "Building Scalable, Data-Driven Solutions",
+      "Final-Year Computer Engineering Student"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typeTarget = document.getElementById('typewriter');
+
+    function typeLoop() {
+      const currentPhrase = phrases[phraseIndex];
+      if (isDeleting) {
+        typeTarget.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typeTarget.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 35 : 70;
+
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        speed = 2000; // Pause at full sentence
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        speed = 400;
+      }
+      setTimeout(typeLoop, speed);
+    }
+    typeLoop();
+
+    // Scroll Reveal Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.12 });
+    revealElements.forEach(el => observer.observe(el));
+
+    // Project Category Filter
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.proj-filter');
+
+      buttons.forEach(btn => {
+        if (btn.dataset.filter === category) {
+          btn.className = "proj-filter px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-cyan-500 text-slate-950 transition";
+        } else {
+          btn.className = "proj-filter px-4 py-2 rounded-xl text-xs font-mono font-semibold glass-card text-slate-300 hover:text-white transition";
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Direct Mailto Contact Form Handler
+    function sendEmail(e) {
+      e.preventDefault();
+      const name = document.getElementById('senderName').value;
+      const subject = document.getElementById('senderSubject').value;
+      const message = document.getElementById('senderMessage').value;
+      const mailtoLink = `mailto:md.aun92@gmail.com?subject=${encodeURIComponent(subject + " - from " + name)}&body=${encodeURIComponent(message)}`;
+      window.location.href = mailtoLink;
+    }
+  </script>
+</body>
+</html>
